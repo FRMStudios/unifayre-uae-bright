@@ -1,27 +1,65 @@
 "use client";
 
 /**
- * MasterManufacturer — Restoria-inspired "Master Chef" profile,
- * adapted for a B2B manufacturer.
+ * MasterManufacturer — Restoria-inspired chef-style profile.
  *
- * Off-white section. Left: portrait of the plant on a circular plate
- * background, ringed with a gold border. Right: editorial copy about
- * heritage, R&D, certifications, and a CTA. Decorative gold ornaments
- * frame the column.
+ * Off-white section. Left: circular gold-ringed plate with rotating factory
+ * imagery (4 plant / operations shots cycling every 5s with crossfade and
+ * Ken Burns). A thin caption below the plate names the active scene.
+ * Right: editorial copy + dotted-leader capability list + CTA.
  */
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+
+type Slide = { src: string; alt: string; caption: string };
+
+const SLIDES: Slide[] = [
+  {
+    src: "/images/veg/plant/plant-hero.png",
+    alt: "Mohali plant exterior at golden hour",
+    caption: "Plant exterior · Mohali",
+  },
+  {
+    src: "/plant/plant-house.jpg",
+    alt: "Plant interior with production line",
+    caption: "Production line",
+  },
+  {
+    src: "/images/veg/lifestyle/cloud-kitchen.png",
+    alt: "Operations — cloud kitchen pass",
+    caption: "Operations · Cloud kitchen pass",
+  },
+  {
+    src: "/images/veg/lifestyle/sizzle-closeup.png",
+    alt: "R&D test kitchen sizzle close-up",
+    caption: "R&D · Test kitchen",
+  },
+];
 
 export default function MasterManufacturer({
   id = "why",
 }: {
   id?: string;
 }) {
+  const [idx, setIdx] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused) return;
+    const t = setInterval(() => {
+      setIdx((i) => (i + 1) % SLIDES.length);
+    }, 5000);
+    return () => clearInterval(t);
+  }, [paused]);
+
+  const slide = SLIDES[idx];
+
   return (
     <section
       id={id}
@@ -34,37 +72,87 @@ export default function MasterManufacturer({
       />
 
       <div className="relative mx-auto grid max-w-[1320px] items-center gap-12 px-5 md:grid-cols-[0.95fr_1.05fr] md:gap-16 md:px-10 lg:gap-20">
-        {/* Left — circular plant portrait */}
+        {/* Left — circular rotating plant portrait */}
         <motion.div
           initial={{ opacity: 0, scale: 0.92 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.95, ease: EASE }}
-          className="relative mx-auto aspect-square w-full max-w-[480px]"
+          className="relative mx-auto w-full max-w-[480px]"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
         >
-          {/* Decorative arch + dots above */}
-          <div className="absolute left-1/2 top-0 hidden -translate-x-1/2 -translate-y-12 md:block">
-            <span className="block h-2 w-2 rotate-45 bg-[color:var(--gold)]" />
+          <div className="relative aspect-square">
+            {/* Diamond ornament above */}
+            <div className="absolute left-1/2 top-0 hidden -translate-x-1/2 -translate-y-12 md:block">
+              <span className="block h-2 w-2 rotate-45 bg-[color:var(--gold)]" />
+            </div>
+
+            {/* Outer faint gold ring */}
+            <div
+              aria-hidden
+              className="absolute inset-0 rounded-full border border-[color:var(--gold)]/35"
+            />
+            {/* Inner cream plate with rotating images */}
+            <div className="absolute inset-[6%] overflow-hidden rounded-full border border-[color:var(--gold)]/45 shadow-[0_30px_70px_-30px_rgba(37,34,30,0.35)]">
+              {SLIDES.map((s, i) => (
+                <motion.div
+                  key={s.src}
+                  initial={false}
+                  animate={{
+                    opacity: i === idx ? 1 : 0,
+                    scale: i === idx ? 1.02 : 1.06,
+                  }}
+                  transition={{
+                    opacity: { duration: 1, ease: "easeInOut" },
+                    scale: { duration: 6, ease: "easeOut" },
+                  }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={s.src}
+                    alt={s.alt}
+                    fill
+                    sizes="(max-width: 768px) 80vw, 460px"
+                    className="object-cover"
+                  />
+                </motion.div>
+              ))}
+            </div>
+            {/* Heritage badge — bottom centre */}
+            <div className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 rounded-full border border-[color:var(--gold)]/45 bg-[color:var(--bg-paper)] px-4 py-1.5 text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[color:var(--gold-deep)] shadow-[0_8px_24px_-8px_rgba(37,34,30,0.25)]">
+              Est · Mohali, India
+            </div>
           </div>
 
-          {/* Outer faint gold ring */}
-          <div
-            aria-hidden
-            className="absolute inset-0 rounded-full border border-[color:var(--gold)]/35"
-          />
-          {/* Inner cream plate */}
-          <div className="absolute inset-[6%] overflow-hidden rounded-full border border-[color:var(--gold)]/45 shadow-[0_30px_70px_-30px_rgba(37,34,30,0.35)]">
-            <Image
-              src="/images/veg/plant/plant-hero.png"
-              alt="Mohali manufacturing plant at golden hour"
-              fill
-              sizes="(max-width: 768px) 80vw, 460px"
-              className="object-cover"
-            />
-          </div>
-          {/* Heritage badge — bottom centre */}
-          <div className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 rounded-full border border-[color:var(--gold)]/45 bg-[color:var(--bg-paper)] px-4 py-1.5 text-[0.66rem] font-semibold uppercase tracking-[0.2em] text-[color:var(--gold-deep)] shadow-[0_8px_24px_-8px_rgba(37,34,30,0.25)]">
-            Est · Mohali, India
+          {/* Caption + dots below the plate */}
+          <div className="mt-6 flex flex-col items-center gap-3">
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={`cap-${idx}`}
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.4 }}
+                className="text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-[color:var(--gold-deep)]"
+              >
+                {slide.caption}
+              </motion.span>
+            </AnimatePresence>
+            <div className="flex items-center gap-1.5">
+              {SLIDES.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setIdx(i)}
+                  aria-label={`Show slide ${i + 1}`}
+                  className={`h-1.5 rounded-full transition-all ${
+                    i === idx
+                      ? "w-6 bg-[color:var(--gold)]"
+                      : "w-1.5 bg-[color:var(--ink-muted)]/40 hover:bg-[color:var(--ink-muted)]/70"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         </motion.div>
 
@@ -88,11 +176,11 @@ export default function MasterManufacturer({
           </h2>
           <p className="mt-5 max-w-[34rem] text-base leading-relaxed text-ink-soft md:text-lg">
             Over thirty years of precision manufacturing from Mohali, India.
-            BRC-certified lines, state-of-the-art technology, and a science-backed
-            R&amp;D team that builds to your menu, region and palate.
+            BRC-certified lines, state-of-the-art technology, and a
+            science-backed R&amp;D team that builds to your menu, region and
+            palate.
           </p>
 
-          {/* Capability pointers — minimal, no boxes */}
           <ul className="mt-7 space-y-3.5">
             {[
               { metric: "18,000 MT", label: "Annual veg capacity" },

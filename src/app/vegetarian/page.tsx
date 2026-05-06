@@ -5,7 +5,6 @@ import EditorialHero from "@/components/v2/EditorialHero";
 import WelcomeStatement from "@/components/v2/WelcomeStatement";
 import FeatureSignature from "@/components/v2/FeatureSignature";
 import MenuStyleRange from "@/components/v2/MenuStyleRange";
-import SpecialDishes from "@/components/v2/SpecialDishes";
 import MasterManufacturer from "@/components/v2/MasterManufacturer";
 import TrustedByDark from "@/components/v2/TrustedByDark";
 import LeadFormDark from "@/components/v2/LeadFormDark";
@@ -56,31 +55,13 @@ export default function VegetarianLandingPage() {
           }}
         />
 
-        {/* FEATURE SIGNATURE — Roti Canai on dark green with gold ornament */}
-        <FeatureSignature
-          imageSrc="/products/flatbreads/roti-canai.jpg"
-          imageAlt="Roti Canai signature flatbread"
-          badge="Signature · Only in India"
-          headline={
-            <>
-              Roti{" "}
-              <em className="italic text-[color:var(--gold)]">Canai</em>.
-              <br />
-              Manufactured at commercial scale.
-            </>
-          }
-          subline="Flaky, layered, Malaysian-style flatbread. Available only in India by us. Frozen at peak so every fry comes out crisp and consistent."
-          metric={{ value: "4,500", label: "pcs / hour" }}
-          cta={{ label: "Request a sample", href: "#contact" }}
-        />
+        {/* RANGE HIGHLIGHTS — rotating signature SKU per category on dark green */}
+        <FeatureSignature />
 
         {/* MENU-STYLE RANGE — editorial menu of all 4 categories */}
         <MenuStyleRange id="products" />
 
-        {/* SPECIAL DISHES — 3-card plate grid on dark green */}
-        <SpecialDishes />
-
-        {/* MASTER MANUFACTURER — chef-style profile of the plant heritage */}
+        {/* MASTER MANUFACTURER — chef-style profile, rotating factory imagery */}
         <MasterManufacturer id="why" />
 
         {/* QSR CLIENT MARQUEE */}
