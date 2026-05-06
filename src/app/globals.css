@@ -5,28 +5,29 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  /* Bright variant — LPQ-inspired warm cream + earth-tone palette */
-  --color-bg: #FAF6EE;
-  --color-bg-soft: #F4EEE0;
-  --color-bg-paper: #FDFBF5;
+  /* Bright variant v2 — Restoria-inspired off-white + forest green + gold */
+  --color-bg: #FCF9F2;
+  --color-bg-soft: #F5EFE2;
+  --color-bg-paper: #FFFEFA;
   --color-bg-warm: #EFE6D2;
-  --color-ink: #2A2520;
+  --color-ink: #25221E;
   --color-ink-soft: #5C544A;
   --color-ink-muted: #9A8F80;
   --color-line: #E8DFD0;
   --color-line-soft: #F0E8D8;
-  --color-earth: #7C5C3D;
-  --color-earth-soft: #A88A6A;
-  --color-earth-deep: #5A3F26;
-  --color-sage: #8A9A7A;
+  --color-gold: #C9A961;
+  --color-gold-soft: #D9BD7E;
+  --color-gold-deep: #A88A47;
+  --color-green: #1F3D2F;
+  --color-green-deep: #142B22;
+  --color-green-soft: #2C5040;
+  --color-cream-on-green: #F4EEE0;
 
-  /* Fonts */
   --font-sans: var(--font-sans);
   --font-display: var(--font-serif);
   --font-heading: var(--font-serif);
   --font-mono: var(--font-sans);
 
-  /* Shadcn tokens mapped to bright theme */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -68,52 +69,61 @@
 }
 
 :root {
-  --bg: #FAF6EE;
-  --bg-soft: #F4EEE0;
-  --bg-paper: #FDFBF5;
+  --bg: #FCF9F2;
+  --bg-soft: #F5EFE2;
+  --bg-paper: #FFFEFA;
   --bg-warm: #EFE6D2;
-  --ink: #2A2520;
+  --ink: #25221E;
   --ink-soft: #5C544A;
   --ink-muted: #9A8F80;
   --line: #E8DFD0;
   --line-soft: #F0E8D8;
-  --earth: #7C5C3D;
-  --earth-soft: #A88A6A;
-  --earth-deep: #5A3F26;
-  --sage: #8A9A7A;
+  --gold: #C9A961;
+  --gold-soft: #D9BD7E;
+  --gold-deep: #A88A47;
+  --green: #1F3D2F;
+  --green-deep: #142B22;
+  --green-soft: #2C5040;
+  --cream-on-green: #F4EEE0;
+  /* Backwards-compat aliases — earth tokens still referenced by legacy components */
+  --earth: #C9A961;
+  --earth-soft: #D9BD7E;
+  --earth-deep: #A88A47;
+  --bg-charcoal: #142B22;
+  --sage: #2C5040;
 
-  --background: #FAF6EE;
-  --foreground: #2A2520;
-  --card: #FDFBF5;
-  --card-foreground: #2A2520;
-  --popover: #FDFBF5;
-  --popover-foreground: #2A2520;
-  --primary: #2A2520;
-  --primary-foreground: #FAF6EE;
-  --secondary: #F4EEE0;
-  --secondary-foreground: #2A2520;
-  --muted: #F4EEE0;
+  --background: #FCF9F2;
+  --foreground: #25221E;
+  --card: #FFFEFA;
+  --card-foreground: #25221E;
+  --popover: #FFFEFA;
+  --popover-foreground: #25221E;
+  --primary: #1F3D2F;
+  --primary-foreground: #FCF9F2;
+  --secondary: #F5EFE2;
+  --secondary-foreground: #25221E;
+  --muted: #F5EFE2;
   --muted-foreground: #5C544A;
-  --accent: #7C5C3D;
-  --accent-foreground: #FAF6EE;
+  --accent: #C9A961;
+  --accent-foreground: #25221E;
   --destructive: oklch(0.577 0.245 27.325);
   --border: #E8DFD0;
   --input: #E8DFD0;
-  --ring: #7C5C3D;
-  --chart-1: #7C5C3D;
-  --chart-2: #2A2520;
+  --ring: #C9A961;
+  --chart-1: #C9A961;
+  --chart-2: #1F3D2F;
   --chart-3: #5C544A;
-  --chart-4: #A88A6A;
+  --chart-4: #D9BD7E;
   --chart-5: #E8DFD0;
   --radius: 0.75rem;
-  --sidebar: #FAF6EE;
-  --sidebar-foreground: #2A2520;
-  --sidebar-primary: #2A2520;
-  --sidebar-primary-foreground: #FAF6EE;
-  --sidebar-accent: #F4EEE0;
-  --sidebar-accent-foreground: #2A2520;
+  --sidebar: #FCF9F2;
+  --sidebar-foreground: #25221E;
+  --sidebar-primary: #1F3D2F;
+  --sidebar-primary-foreground: #FCF9F2;
+  --sidebar-accent: #F5EFE2;
+  --sidebar-accent-foreground: #25221E;
   --sidebar-border: #E8DFD0;
-  --sidebar-ring: #7C5C3D;
+  --sidebar-ring: #C9A961;
 }
 
 @layer base {
@@ -132,7 +142,7 @@
   }
   h1, h2, h3, h4, .font-display {
     font-family: var(--font-serif), Georgia, serif;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.005em;
     font-weight: 500;
   }
 }
@@ -148,28 +158,82 @@
     text-wrap: balance;
   }
 
-  /* Earth accent line — warm replacement for V2 gold line */
-  .earth-line {
-    height: 1.5px;
+  /* Gold accent line */
+  .gold-line {
+    height: 1px;
     background: linear-gradient(
       90deg,
       transparent,
-      var(--earth) 30%,
-      var(--earth-soft) 50%,
-      var(--earth) 70%,
+      var(--gold) 30%,
+      var(--gold-soft) 50%,
+      var(--gold) 70%,
       transparent
     );
   }
 
-  /* Cream/earth blob accent */
-  .cream-blob {
+  /* Gold dotted divider — Restoria-style ornament */
+  .gold-dot-line {
+    height: 1px;
+    background-image: linear-gradient(
+      90deg,
+      var(--gold) 0,
+      var(--gold) 4px,
+      transparent 4px,
+      transparent 12px
+    );
+    background-size: 12px 1px;
+  }
+
+  /* Decorative gold circle ornament — used behind hero / feature dishes */
+  .gold-ring {
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+  }
+  .gold-ring-double::before {
+    content: "";
+    position: absolute;
+    inset: -10%;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  /* Soft gold blob */
+  .gold-blob {
     background: radial-gradient(
       closest-side,
-      rgba(124, 92, 61, 0.18),
-      rgba(168, 138, 106, 0.1) 45%,
+      rgba(201, 169, 97, 0.25),
+      rgba(201, 169, 97, 0.1) 45%,
       transparent 72%
     );
     filter: blur(40px);
+  }
+
+  /* Cream blob — for green-bg sections */
+  .cream-blob {
+    background: radial-gradient(
+      closest-side,
+      rgba(244, 238, 224, 0.3),
+      rgba(244, 238, 224, 0.12) 45%,
+      transparent 72%
+    );
+    filter: blur(40px);
+  }
+
+  /* Subtle paper-noise texture — adds depth to off-white sections */
+  .paper-grain {
+    background-image:
+      radial-gradient(
+        circle at 20% 30%,
+        rgba(201, 169, 97, 0.025) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 80% 70%,
+        rgba(31, 61, 47, 0.02) 0%,
+        transparent 50%
+      );
   }
 
   /* Ken Burns */
@@ -212,11 +276,20 @@
     animation: soft-pulse 1.8s ease-in-out infinite;
   }
 
-  /* Card lifts — softer for the bright theme */
+  /* Slow rotate — used for gold ornament rings */
+  @keyframes slow-rotate {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  .animate-slow-rotate {
+    animation: slow-rotate 60s linear infinite;
+  }
+
+  /* Card softness */
   .card-soft {
     box-shadow:
-      0 1px 2px rgba(42, 37, 32, 0.04),
-      0 8px 24px -16px rgba(42, 37, 32, 0.1);
+      0 1px 2px rgba(37, 34, 30, 0.04),
+      0 8px 24px -16px rgba(37, 34, 30, 0.1);
   }
   .card-hover {
     transition:
@@ -227,11 +300,10 @@
   .card-hover:hover {
     transform: translateY(-4px);
     box-shadow:
-      0 2px 4px rgba(42, 37, 32, 0.06),
-      0 24px 48px -24px rgba(42, 37, 32, 0.18);
+      0 2px 4px rgba(37, 34, 30, 0.06),
+      0 24px 48px -24px rgba(37, 34, 30, 0.18);
   }
 
-  /* Eyebrow */
   .eyebrow {
     font-family: var(--font-sans), system-ui, sans-serif;
     text-transform: uppercase;
@@ -240,38 +312,38 @@
     font-weight: 600;
   }
 
-  /* Buttons — LPQ-inspired minimal */
-  .btn-earth {
-    background-color: var(--earth);
-    color: #FAF6EE;
+  /* Buttons */
+  .btn-gold {
+    background-color: var(--gold);
+    color: var(--ink);
     transition: background-color 0.2s ease, transform 0.2s ease;
   }
-  .btn-earth:hover {
-    background-color: var(--earth-deep);
+  .btn-gold:hover {
+    background-color: var(--gold-soft);
   }
-  .btn-earth:active {
+  .btn-gold:active {
     transform: translateY(1px);
   }
-  .btn-earth-outline {
-    border: 1px solid var(--earth);
-    color: var(--earth);
+  .btn-green {
+    background-color: var(--green);
+    color: var(--cream-on-green);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+  .btn-green:hover {
+    background-color: var(--green-soft);
+  }
+  .btn-green:active {
+    transform: translateY(1px);
+  }
+  .btn-gold-outline {
+    border: 1px solid var(--gold);
+    color: var(--gold-deep);
     background-color: transparent;
     transition: all 0.2s ease;
   }
-  .btn-earth-outline:hover {
-    background-color: var(--earth);
-    color: #FAF6EE;
-  }
-  .btn-ink {
-    background-color: var(--ink);
-    color: #FAF6EE;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-  }
-  .btn-ink:hover {
-    background-color: var(--ink-soft);
-  }
-  .btn-ink:active {
-    transform: translateY(1px);
+  .btn-gold-outline:hover {
+    background-color: var(--gold);
+    color: var(--ink);
   }
   .btn-text {
     color: var(--ink);
@@ -280,9 +352,17 @@
     transition: color 0.2s ease, border-color 0.2s ease;
   }
   .btn-text:hover {
-    color: var(--earth);
-    border-color: var(--earth);
+    color: var(--gold-deep);
+    border-color: var(--gold-deep);
   }
+
+  /* Backwards-compat aliases used by legacy components */
+  .btn-earth { background-color: var(--gold); color: var(--ink); transition: background-color 0.2s ease, transform 0.2s ease; }
+  .btn-earth:hover { background-color: var(--gold-soft); }
+  .btn-earth:active { transform: translateY(1px); }
+  .btn-earth-outline { border: 1px solid var(--gold); color: var(--gold-deep); background-color: transparent; transition: all 0.2s ease; }
+  .btn-earth-outline:hover { background-color: var(--gold); color: var(--ink); }
+  .earth-line { height: 1.5px; background: linear-gradient(90deg, transparent, var(--gold) 30%, var(--gold-soft) 50%, var(--gold) 70%, transparent); }
 
   .scrollbar-none {
     scrollbar-width: none;
@@ -294,6 +374,6 @@
 }
 
 ::selection {
-  background-color: #7C5C3D;
-  color: #FAF6EE;
+  background-color: var(--gold);
+  color: var(--ink);
 }
