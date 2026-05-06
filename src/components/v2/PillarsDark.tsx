@@ -1,12 +1,11 @@
 "use client";
 
 /**
- * PillarsDark — V2 four uniform pillar tiles in a horizontal scroller.
+ * Pillars — bright variant.
+ * (File name retains "Dark" for git-diff readability across the bright fork.)
  *
- * Each tile is identical in size and treatment. Strip scrolls horizontally
- * to keep the page short. Prev / next arrow buttons hover over the strip
- * (desktop) so mouse users can advance even with the scrollbar hidden.
- * Touch / trackpad users get native swipe.
+ * Four uniform tiles in a horizontal scroller, image-led with a paper-cream
+ * label band at the bottom for the title + body. Earth accent throughout.
  */
 
 import Image from "next/image";
@@ -104,7 +103,7 @@ export default function PillarsDark({ id = "pillars" }: { id?: string }) {
   return (
     <section
       id={id}
-      className="relative bg-[color:var(--bg-deep)] py-20 md:py-28"
+      className="relative bg-[color:var(--bg-soft)] py-20 md:py-28"
     >
       <div className="mx-auto max-w-[1320px] px-5 md:px-10">
         <motion.div
@@ -115,18 +114,18 @@ export default function PillarsDark({ id = "pillars" }: { id?: string }) {
           className="mb-12 flex flex-col items-start justify-between gap-5 md:mb-16 md:flex-row md:items-end"
         >
           <div>
-            <span className="text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-[color:var(--accent-gold)]">
+            <span className="text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-[color:var(--earth)]">
               Why Unifayre
             </span>
-            <h2 className="mt-3 max-w-[20ch] font-display text-3xl md:text-4xl lg:text-5xl font-light leading-tight tracking-tight text-[color:var(--text-primary)]">
+            <h2 className="mt-3 max-w-[20ch] font-display text-3xl md:text-4xl lg:text-5xl font-medium leading-tight tracking-tight text-ink">
               Four{" "}
-              <em className="italic text-[color:var(--accent-gold)]">
+              <em className="italic text-[color:var(--earth)]">
                 non-negotiables.
               </em>
             </h2>
           </div>
           <div className="flex items-end gap-5">
-            <p className="max-w-[26rem] text-base font-light leading-relaxed text-[color:var(--text-primary)]/85">
+            <p className="max-w-[26rem] text-base leading-relaxed text-ink-soft">
               Built for partners who can&rsquo;t afford inconsistency. Built
               for menus that scale.
             </p>
@@ -162,7 +161,7 @@ export default function PillarsDark({ id = "pillars" }: { id?: string }) {
             </div>
           ))}
         </div>
-        <p className="mt-4 text-[0.7rem] font-medium uppercase tracking-[0.18em] text-[color:var(--text-secondary)]/60 md:hidden">
+        <p className="mt-4 text-[0.7rem] font-medium uppercase tracking-[0.18em] text-ink-muted/70 md:hidden">
           Swipe to see more →
         </p>
       </div>
@@ -186,7 +185,7 @@ function ScrollButton({
       onClick={onClick}
       disabled={disabled}
       aria-label={ariaLabel}
-      className="flex h-11 w-11 items-center justify-center rounded-full border border-[color:var(--border-subtle)] bg-[color:var(--bg-warm-shadow)]/60 text-[color:var(--text-primary)] backdrop-blur-md transition-all hover:border-[color:var(--accent-gold)] hover:text-[color:var(--accent-gold)] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-[color:var(--border-subtle)] disabled:hover:text-[color:var(--text-primary)]"
+      className="flex h-11 w-11 items-center justify-center rounded-full border border-[color:var(--line)] bg-[color:var(--bg-paper)]/80 text-ink backdrop-blur-md transition-all hover:border-[color:var(--earth)] hover:text-[color:var(--earth)] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-[color:var(--line)] disabled:hover:text-ink"
     >
       {children}
     </button>
@@ -202,39 +201,40 @@ function PillarTile({ pillar, delay }: { pillar: Pillar; delay: number }) {
       viewport={{ once: true, amount: 0.18 }}
       transition={{ duration: 0.7, ease: EASE, delay }}
       whileHover={{ y: -4 }}
-      className="group relative flex aspect-[4/5] flex-col justify-between overflow-hidden rounded-[24px] border border-[color:var(--border-subtle)] p-7 text-[color:var(--text-primary)] transition-all hover:border-[color:var(--accent-gold)] sm:aspect-[5/4] md:p-8"
+      className="group relative flex aspect-[4/5] flex-col justify-between overflow-hidden rounded-[24px] border border-[color:var(--line)] bg-[color:var(--bg-paper)] p-7 text-ink transition-all hover:border-[color:var(--earth)] hover:shadow-[0_24px_48px_-24px_rgba(124,92,61,0.3)] sm:aspect-[5/4] md:p-8"
     >
-      <Image
-        src={pillar.image}
-        alt=""
-        fill
-        sizes="(max-width: 640px) 100vw, 50vw"
-        className="object-cover opacity-65 transition-transform duration-700 group-hover:scale-[1.05]"
-      />
-      <div
-        aria-hidden
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(10,22,40,0.55) 0%, rgba(10,22,40,0.25) 30%, rgba(10,22,40,0.55) 65%, rgba(10,22,40,0.95) 100%)",
-        }}
-      />
-
-      <div className="relative flex items-start justify-between">
-        <span className="inline-flex items-center rounded-full border border-[color:var(--border-gold)] bg-[color:var(--bg-deep)]/65 px-3 py-1 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-[color:var(--accent-gold)] backdrop-blur">
-          {pillar.number}
-        </span>
-        <Icon
-          className="h-6 w-6 text-[color:var(--accent-gold)] transition-transform duration-300 group-hover:scale-110"
-          strokeWidth={1.6}
+      {/* Image fills the upper part of the tile */}
+      <div className="absolute inset-x-0 top-0 h-[58%] overflow-hidden">
+        <Image
+          src={pillar.image}
+          alt=""
+          fill
+          sizes="(max-width: 640px) 100vw, 50vw"
+          className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+        />
+        {/* Subtle bottom fade so image transitions into the cream label band */}
+        <div
+          aria-hidden
+          className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[color:var(--bg-paper)] to-transparent"
         />
       </div>
 
+      {/* Top row: number badge + icon */}
+      <div className="relative flex items-start justify-between">
+        <span className="inline-flex items-center rounded-full border border-[color:var(--earth)]/40 bg-[color:var(--bg-paper)]/85 px-3 py-1 text-[0.62rem] font-bold uppercase tracking-[0.16em] text-[color:var(--earth)] backdrop-blur">
+          {pillar.number}
+        </span>
+        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[color:var(--bg-paper)]/85 text-[color:var(--earth)] shadow-[0_4px_12px_rgba(42,37,32,0.08)] backdrop-blur transition-transform duration-300 group-hover:scale-110">
+          <Icon className="h-4 w-4" strokeWidth={1.6} />
+        </span>
+      </div>
+
+      {/* Bottom: title + body on cream */}
       <div className="relative">
-        <h3 className="font-display text-[1.4rem] md:text-[1.6rem] font-light leading-tight tracking-tight text-[color:var(--text-primary)]">
+        <h3 className="font-display text-[1.4rem] md:text-[1.6rem] font-medium leading-tight tracking-tight text-ink">
           {pillar.title}
         </h3>
-        <p className="mt-3 text-[0.92rem] font-light leading-relaxed text-[color:var(--text-primary)]/85">
+        <p className="mt-3 text-[0.92rem] leading-relaxed text-ink-soft">
           {pillar.body}
         </p>
       </div>

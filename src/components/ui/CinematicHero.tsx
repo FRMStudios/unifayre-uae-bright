@@ -1,25 +1,18 @@
 "use client";
 
 /**
- * CinematicHero
+ * CinematicHero — bright variant.
  *
- * Full-bleed cinematic hero used across pages. Image fills the section with a
- * Ken Burns slow zoom, dark gradient overlay grounds the bottom for content,
- * gold accent line + headline + sub-line + dual CTAs sit bottom-left.
+ * Editorial light-theme hero. Image is the centrepiece against a cream
+ * background; gentle warm gradient grounds the bottom-left content panel.
  *
  * Heights:
  *   "home"   → 90vh
- *   "page"   → 80vh   (Veg / Non-Veg landing)
- *   "inner"  → 60vh   (Why / Manufacturing / For UAE / Contact)
+ *   "page"   → 80vh
+ *   "inner"  → 60vh
  *
- * Refined mode (`refined` prop) drops the headline one Tailwind step,
- * switches to font-light + tracking-tight, and reduces sub-line size.
- * Used on /vegetarian per the v2 final image integration brief.
- *
- * `objectPosition` controls how the image is anchored when cropped.
- * `overlayStyle` switches the gradient direction:
- *   "bottom-left" — gradient rises from bottom-left (default; chef's pass / multi-food shots)
- *   "left"        — gradient sweeps from left (food-on-right shots)
+ * `objectPosition` and `overlayStyle` mirror the v2 dark API for drop-in
+ * compatibility with the existing /vegetarian page.
  */
 
 import Image from "next/image";
@@ -42,11 +35,8 @@ export type CinematicHeroProps = {
   primaryCta?: CTA;
   secondaryCta?: CTA;
   ticker?: string[];
-  /** "center" (default) | "right" | "left" | any next/image objectPosition value */
   objectPosition?: string;
-  /** "bottom-left" (default) | "left" — direction the dark gradient sweeps from */
   overlayStyle?: "bottom-left" | "left";
-  /** When true, use refined sizing/weight per the V2 elegant typography brief. */
   refined?: boolean;
 };
 
@@ -72,18 +62,17 @@ export default function CinematicHero({
   refined = false,
 }: CinematicHeroProps) {
   const headlineClass = refined
-    ? "mt-5 font-display text-3xl md:text-4xl lg:text-5xl font-light leading-tight tracking-tight text-[color:var(--text-primary)] text-balance"
-    : "mt-5 font-display text-[clamp(2.4rem,5.6vw,5rem)] font-semibold leading-[1.05] tracking-[-0.02em] text-[color:var(--text-primary)] text-balance";
+    ? "mt-5 font-display text-3xl md:text-4xl lg:text-5xl font-medium leading-tight tracking-tight text-ink text-balance"
+    : "mt-5 font-display text-[clamp(2.4rem,5.6vw,5rem)] font-medium leading-[1.05] tracking-[-0.01em] text-ink text-balance";
 
   const sublineClass = refined
-    ? "mt-5 max-w-xl text-base md:text-lg lg:text-xl font-light leading-relaxed tracking-wide text-[color:var(--text-primary)]/85"
-    : "mt-5 max-w-[34rem] text-[1rem] leading-relaxed text-[color:var(--text-secondary)]";
+    ? "mt-5 max-w-xl text-base md:text-lg lg:text-xl font-normal leading-relaxed text-ink-soft"
+    : "mt-5 max-w-[34rem] text-[1rem] leading-relaxed text-ink-soft";
 
   return (
     <section
-      className={`relative isolate overflow-hidden bg-[color:var(--bg-deep)] text-[color:var(--text-primary)] ${HEIGHT_BY_VARIANT[variant]}`}
+      className={`relative isolate overflow-hidden bg-[color:var(--bg)] text-ink ${HEIGHT_BY_VARIANT[variant]}`}
     >
-      {/* Ken Burns image */}
       <div className="absolute inset-0">
         <div className="animate-ken-burns absolute inset-0">
           <Image
@@ -97,55 +86,61 @@ export default function CinematicHero({
           />
         </div>
 
-        {/* Gradient overlays — direction depends on overlayStyle */}
+        {/* Cream warm gradient overlays — softer than v2 dark */}
         {overlayStyle === "left" ? (
           <>
-            {/* Mobile — heavy bottom darken so bottom-anchored content reads */}
+            {/* Mobile bottom darken — warm cream-to-translucent */}
             <div
               aria-hidden
-              className="absolute inset-0 bg-gradient-to-t from-[color:var(--bg-deep)] via-[color:var(--bg-deep)]/55 to-[color:var(--bg-deep)]/15 md:hidden"
+              className="absolute inset-0 md:hidden"
+              style={{
+                background:
+                  "linear-gradient(to top, rgba(250,246,238,0.92) 0%, rgba(250,246,238,0.55) 35%, rgba(250,246,238,0.15) 65%, transparent 100%)",
+              }}
             />
-            {/* Desktop — left sweep gradient */}
+            {/* Desktop left sweep — cream */}
             <div
               aria-hidden
               className="absolute inset-0 hidden md:block"
               style={{
                 background:
-                  "linear-gradient(90deg, rgba(10,22,40,0.85) 0%, rgba(10,22,40,0.55) 30%, rgba(10,22,40,0.15) 55%, transparent 75%)",
+                  "linear-gradient(90deg, rgba(250,246,238,0.92) 0%, rgba(250,246,238,0.7) 30%, rgba(250,246,238,0.25) 55%, transparent 75%)",
               }}
             />
           </>
         ) : (
           <>
-            {/* Bottom-left rising gradient (default) */}
-            <div aria-hidden className="absolute inset-0 cinematic-overlay" />
-            <div aria-hidden className="absolute inset-0 cinematic-side md:hidden" />
+            {/* Bottom-left rising cream gradient */}
             <div
               aria-hidden
-              className="absolute inset-x-0 bottom-0 h-[70%] bg-gradient-to-t from-[color:var(--bg-deep)] via-[color:var(--bg-deep)]/70 to-transparent"
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(180deg, transparent 0%, rgba(250,246,238,0.25) 50%, rgba(250,246,238,0.85) 100%)",
+              }}
             />
             <div
               aria-hidden
               className="absolute inset-0 hidden md:block"
               style={{
                 background:
-                  "linear-gradient(45deg, rgba(10,22,40,0.85) 0%, rgba(10,22,40,0.4) 35%, transparent 65%)",
+                  "linear-gradient(45deg, rgba(250,246,238,0.85) 0%, rgba(250,246,238,0.4) 35%, transparent 65%)",
               }}
             />
           </>
         )}
       </div>
 
-      {/* Top ticker (rotating category names) */}
+      {/* Top ticker */}
       {ticker && ticker.length > 0 && (
-        <div className="absolute inset-x-0 top-0 z-10 hidden border-b border-white/10 bg-black/20 backdrop-blur-md md:block">
-          <div className="mx-auto flex max-w-[1320px] items-center gap-6 overflow-hidden px-10 py-2.5 text-[0.66rem] font-semibold uppercase tracking-[0.22em] text-white/65">
-            <span className="animate-gold-pulse text-[color:var(--accent-gold)]">●</span>
+        <div className="absolute inset-x-0 top-0 z-10 hidden border-b border-[color:var(--line)] bg-[color:var(--bg-paper)]/85 backdrop-blur-md md:block">
+          <div className="mx-auto flex max-w-[1320px] items-center gap-6 overflow-hidden px-10 py-2.5 text-[0.66rem] font-semibold uppercase tracking-[0.22em] text-ink-soft">
+            <span className="text-[color:var(--earth)]">●</span>
             <div className="flex w-max animate-marquee items-center gap-10">
               {[...ticker, ...ticker].map((t, i) => (
                 <span key={`${t}-${i}`} className="whitespace-nowrap">
                   {t}
-                  <span className="ml-10 text-[color:var(--accent-gold)]/60">/</span>
+                  <span className="ml-10 text-[color:var(--earth)]/50">/</span>
                 </span>
               ))}
             </div>
@@ -164,7 +159,6 @@ export default function CinematicHero({
           }}
           className="max-w-[680px]"
         >
-          {/* Gold accent line */}
           <motion.div
             variants={{
               hidden: { opacity: 0, scaleX: 0.4 },
@@ -175,7 +169,7 @@ export default function CinematicHero({
               },
             }}
             style={{ transformOrigin: "0 50%" }}
-            className="gold-line w-24 md:w-32"
+            className="earth-line w-24 md:w-32"
           />
 
           {eyebrow && (
@@ -184,7 +178,7 @@ export default function CinematicHero({
                 hidden: { opacity: 0, y: 12 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
               }}
-              className="mt-6 block text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-[color:var(--accent-gold)]"
+              className="mt-6 block text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-[color:var(--earth)]"
             >
               {eyebrow}
             </motion.span>
@@ -223,7 +217,7 @@ export default function CinematicHero({
               {primaryCta && (
                 <Link
                   href={primaryCta.href}
-                  className="group btn-gold inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[0.88rem] font-semibold shadow-[0_14px_36px_-12px_rgba(201,169,97,0.5)]"
+                  className="group btn-earth inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[0.88rem] font-semibold shadow-[0_14px_36px_-12px_rgba(124,92,61,0.45)]"
                 >
                   {primaryCta.label}
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
@@ -232,7 +226,7 @@ export default function CinematicHero({
               {secondaryCta && (
                 <Link
                   href={secondaryCta.href}
-                  className="btn-gold-outline inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[0.88rem] font-semibold backdrop-blur"
+                  className="btn-earth-outline inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-[0.88rem] font-semibold backdrop-blur"
                 >
                   {secondaryCta.label}
                 </Link>

@@ -1,12 +1,8 @@
 "use client";
 
 /**
- * LifestyleStrip
- *
- * Horizontal strip of cinematic 16:9 lifestyle frames (QSR plate, cloud
- * kitchen, hotel buffet, fine-dine plating, sizzle, etc.). Each frame has a
- * gold uppercase caption beneath. On desktop the row sits side-by-side; on
- * mobile it becomes a swipeable horizontal scroller.
+ * LifestyleStrip — bright variant.
+ * 5 cinematic frames on a paper-cream backdrop with earth captions.
  */
 
 import Image from "next/image";
@@ -34,7 +30,7 @@ export default function LifestyleStrip({
   frames,
 }: LifestyleStripProps) {
   return (
-    <section className="relative overflow-hidden bg-[color:var(--bg-deep)] py-20 md:py-24">
+    <section className="relative overflow-hidden bg-[color:var(--bg-paper)] py-20 md:py-24">
       <div className="mx-auto max-w-[1320px] px-5 md:px-10">
         {(eyebrow || title) && (
           <motion.div
@@ -46,19 +42,19 @@ export default function LifestyleStrip({
           >
             {eyebrow && (
               <>
-                <div className="gold-line w-16 md:w-24" />
-                <span className="text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-[color:var(--accent-gold)]">
+                <div className="earth-line w-16 md:w-24" />
+                <span className="text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-[color:var(--earth)]">
                   {eyebrow}
                 </span>
               </>
             )}
             {title && (
-              <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-light leading-tight tracking-tight text-[color:var(--text-primary)]">
+              <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-medium leading-tight tracking-tight text-ink">
                 {title}
               </h2>
             )}
             {subline && (
-              <p className="max-w-xl text-sm md:text-base font-light leading-relaxed text-[color:var(--text-primary)]/85">
+              <p className="max-w-xl text-sm md:text-base leading-relaxed text-ink-soft">
                 {subline}
               </p>
             )}
@@ -66,7 +62,6 @@ export default function LifestyleStrip({
         )}
       </div>
 
-      {/* Horizontal frames — scrollable on mobile, grid on desktop */}
       <div className="scrollbar-none overflow-x-auto md:overflow-visible">
         <div className="mx-auto flex w-max max-w-[1320px] gap-4 px-5 md:w-full md:grid md:grid-cols-5 md:gap-4 md:px-10">
           {frames.map((frame, i) => (
@@ -82,7 +77,7 @@ export default function LifestyleStrip({
               }}
               className="group flex w-[78vw] shrink-0 flex-col gap-3 sm:w-[55vw] md:w-auto"
             >
-              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl border border-[color:var(--border-subtle)] bg-[color:var(--bg-warm-shadow)] transition-all hover:border-[color:var(--accent-gold)]">
+              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl border border-[color:var(--line)] bg-[color:var(--bg-warm)] transition-all hover:border-[color:var(--earth)]">
                 <Image
                   src={frame.src}
                   alt={frame.alt}
@@ -90,12 +85,8 @@ export default function LifestyleStrip({
                   sizes="(max-width: 768px) 78vw, (max-width: 1024px) 55vw, 18vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
                 />
-                <div
-                  aria-hidden
-                  className="absolute inset-0 bg-gradient-to-t from-[color:var(--bg-deep)]/55 via-transparent to-transparent"
-                />
               </div>
-              <figcaption className="text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-[color:var(--accent-gold)]">
+              <figcaption className="text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-[color:var(--earth)]">
                 {frame.caption}
               </figcaption>
             </motion.figure>

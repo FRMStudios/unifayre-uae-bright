@@ -5,41 +5,28 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  /* V2 brand palette — cinematic premium B2B */
-  --color-bg-deep: #0A1628;
-  --color-bg-warm-shadow: #1A1F2E;
-  --color-bg-slate: #14181F;
-  --color-bg-charcoal: #0E1018;
-  --color-accent-gold: #C9A961;
-  --color-accent-gold-soft: #D4B876;
-  --color-accent-gold-deep: #A88A47;
-  --color-text-primary: #F5F1EA;
-  --color-text-secondary: #A8AFB8;
-  --color-text-muted: #6B7280;
-  --color-border-subtle: rgba(201, 169, 97, 0.2);
-  --color-border-gold: rgba(201, 169, 97, 0.45);
-
-  /* Legacy V1 tokens kept during migration — sections not yet rebuilt still
-     use these. Will be removed once V2 sweep is complete. */
-  --color-bg: #FFFFFF;
-  --color-bg-soft: #F7F7F5;
-  --color-bg-muted: #F2F1ED;
-  --color-ink: #0F0F10;
-  --color-ink-soft: #4A4A4F;
-  --color-ink-muted: #9A9A9E;
-  --color-line: #EAEAEA;
-  --color-line-soft: #F2F2F2;
-  --color-orange: #FF6A2C;
-  --color-orange-soft: #FFF1EA;
-  --color-orange-bright: #FF8550;
+  /* Bright variant — LPQ-inspired warm cream + earth-tone palette */
+  --color-bg: #FAF6EE;
+  --color-bg-soft: #F4EEE0;
+  --color-bg-paper: #FDFBF5;
+  --color-bg-warm: #EFE6D2;
+  --color-ink: #2A2520;
+  --color-ink-soft: #5C544A;
+  --color-ink-muted: #9A8F80;
+  --color-line: #E8DFD0;
+  --color-line-soft: #F0E8D8;
+  --color-earth: #7C5C3D;
+  --color-earth-soft: #A88A6A;
+  --color-earth-deep: #5A3F26;
+  --color-sage: #8A9A7A;
 
   /* Fonts */
-  --font-sans: var(--font-inter);
-  --font-display: var(--font-cormorant);
-  --font-heading: var(--font-cormorant);
-  --font-mono: var(--font-inter);
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-serif);
+  --font-heading: var(--font-serif);
+  --font-mono: var(--font-sans);
 
-  /* Shadcn tokens */
+  /* Shadcn tokens mapped to bright theme */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -81,66 +68,52 @@
 }
 
 :root {
-  /* V2 raw tokens for inline use */
-  --bg-deep: #0A1628;
-  --bg-warm-shadow: #1A1F2E;
-  --bg-slate: #14181F;
-  --bg-charcoal: #0E1018;
-  --accent-gold: #C9A961;
-  --accent-gold-soft: #D4B876;
-  --accent-gold-deep: #A88A47;
-  --text-primary: #F5F1EA;
-  --text-secondary: #A8AFB8;
-  --text-muted: #6B7280;
-  --border-subtle: rgba(201, 169, 97, 0.2);
-  --border-gold: rgba(201, 169, 97, 0.45);
+  --bg: #FAF6EE;
+  --bg-soft: #F4EEE0;
+  --bg-paper: #FDFBF5;
+  --bg-warm: #EFE6D2;
+  --ink: #2A2520;
+  --ink-soft: #5C544A;
+  --ink-muted: #9A8F80;
+  --line: #E8DFD0;
+  --line-soft: #F0E8D8;
+  --earth: #7C5C3D;
+  --earth-soft: #A88A6A;
+  --earth-deep: #5A3F26;
+  --sage: #8A9A7A;
 
-  /* V1 legacy raw tokens (kept during migration) */
-  --bg: #FFFFFF;
-  --bg-soft: #F7F7F5;
-  --bg-muted: #F2F1ED;
-  --ink: #0F0F10;
-  --ink-soft: #4A4A4F;
-  --ink-muted: #9A9A9E;
-  --line: #EAEAEA;
-  --line-soft: #F2F2F2;
-  --orange: #FF6A2C;
-  --orange-soft: #FFF1EA;
-  --orange-bright: #FF8550;
-
-  /* Shadcn / Radix theme — switched to dark V2 base */
-  --background: #0A1628;
-  --foreground: #F5F1EA;
-  --card: #14181F;
-  --card-foreground: #F5F1EA;
-  --popover: #14181F;
-  --popover-foreground: #F5F1EA;
-  --primary: #C9A961;
-  --primary-foreground: #0A1628;
-  --secondary: #1A1F2E;
-  --secondary-foreground: #F5F1EA;
-  --muted: #1A1F2E;
-  --muted-foreground: #A8AFB8;
-  --accent: #C9A961;
-  --accent-foreground: #0A1628;
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: rgba(201, 169, 97, 0.2);
-  --input: rgba(201, 169, 97, 0.18);
-  --ring: #C9A961;
-  --chart-1: #C9A961;
-  --chart-2: #F5F1EA;
-  --chart-3: #A8AFB8;
-  --chart-4: #D4B876;
-  --chart-5: #1A1F2E;
+  --background: #FAF6EE;
+  --foreground: #2A2520;
+  --card: #FDFBF5;
+  --card-foreground: #2A2520;
+  --popover: #FDFBF5;
+  --popover-foreground: #2A2520;
+  --primary: #2A2520;
+  --primary-foreground: #FAF6EE;
+  --secondary: #F4EEE0;
+  --secondary-foreground: #2A2520;
+  --muted: #F4EEE0;
+  --muted-foreground: #5C544A;
+  --accent: #7C5C3D;
+  --accent-foreground: #FAF6EE;
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: #E8DFD0;
+  --input: #E8DFD0;
+  --ring: #7C5C3D;
+  --chart-1: #7C5C3D;
+  --chart-2: #2A2520;
+  --chart-3: #5C544A;
+  --chart-4: #A88A6A;
+  --chart-5: #E8DFD0;
   --radius: 0.75rem;
-  --sidebar: #0A1628;
-  --sidebar-foreground: #F5F1EA;
-  --sidebar-primary: #C9A961;
-  --sidebar-primary-foreground: #0A1628;
-  --sidebar-accent: #1A1F2E;
-  --sidebar-accent-foreground: #F5F1EA;
-  --sidebar-border: rgba(201, 169, 97, 0.2);
-  --sidebar-ring: #C9A961;
+  --sidebar: #FAF6EE;
+  --sidebar-foreground: #2A2520;
+  --sidebar-primary: #2A2520;
+  --sidebar-primary-foreground: #FAF6EE;
+  --sidebar-accent: #F4EEE0;
+  --sidebar-accent-foreground: #2A2520;
+  --sidebar-border: #E8DFD0;
+  --sidebar-ring: #7C5C3D;
 }
 
 @layer base {
@@ -148,102 +121,68 @@
     @apply border-border outline-ring/50;
   }
   html {
-    font-family: var(--font-inter), system-ui, sans-serif;
+    font-family: var(--font-sans), system-ui, sans-serif;
     scroll-behavior: smooth;
   }
   body {
-    background-color: var(--bg-deep);
-    color: var(--text-primary);
-    font-feature-settings: "ss01", "cv11";
+    background-color: var(--bg);
+    color: var(--ink);
+    font-feature-settings: "ss01";
     -webkit-font-smoothing: antialiased;
   }
   h1, h2, h3, h4, .font-display {
-    font-family: var(--font-cormorant), Georgia, serif;
-    letter-spacing: -0.015em;
-    font-weight: 600;
+    font-family: var(--font-serif), Georgia, serif;
+    letter-spacing: -0.01em;
+    font-weight: 500;
   }
 }
 
 @layer utilities {
   .font-display {
-    font-family: var(--font-cormorant), Georgia, serif;
+    font-family: var(--font-serif), Georgia, serif;
   }
   .font-body {
-    font-family: var(--font-inter), system-ui, sans-serif;
-  }
-  .text-muted-accent {
-    color: var(--text-secondary);
+    font-family: var(--font-sans), system-ui, sans-serif;
   }
   .text-balance {
     text-wrap: balance;
   }
 
-  /* V2 — Ken Burns slow zoom for cinematic heroes */
+  /* Earth accent line — warm replacement for V2 gold line */
+  .earth-line {
+    height: 1.5px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--earth) 30%,
+      var(--earth-soft) 50%,
+      var(--earth) 70%,
+      transparent
+    );
+  }
+
+  /* Cream/earth blob accent */
+  .cream-blob {
+    background: radial-gradient(
+      closest-side,
+      rgba(124, 92, 61, 0.18),
+      rgba(168, 138, 106, 0.1) 45%,
+      transparent 72%
+    );
+    filter: blur(40px);
+  }
+
+  /* Ken Burns */
   @keyframes ken-burns {
-    0% { transform: scale(1.02); }
-    100% { transform: scale(1.08); }
+    0%, 100% { transform: scale(1.02); }
+    50% { transform: scale(1.08); }
   }
   .animate-ken-burns {
     animation: ken-burns 22s ease-in-out infinite alternate;
     will-change: transform;
   }
 
-  /* V2 — gold accent line with sheen */
-  .gold-line {
-    height: 2px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      var(--accent-gold) 30%,
-      var(--accent-gold-soft) 50%,
-      var(--accent-gold) 70%,
-      transparent
-    );
-  }
-
-  /* V2 — gold border glow */
-  .ring-gold {
-    box-shadow:
-      inset 0 0 0 1px rgba(201, 169, 97, 0.28),
-      0 18px 48px -22px rgba(201, 169, 97, 0.45);
-  }
-
-  /* V2 — cinematic vignette overlay (use absolutely positioned over hero images) */
-  .cinematic-overlay {
-    background: linear-gradient(
-      180deg,
-      transparent 0%,
-      rgba(10, 22, 40, 0.25) 45%,
-      rgba(10, 22, 40, 0.85) 100%
-    );
-  }
-  .cinematic-overlay-strong {
-    background: linear-gradient(
-      180deg,
-      rgba(10, 22, 40, 0.35) 0%,
-      rgba(10, 22, 40, 0.55) 40%,
-      rgba(10, 22, 40, 0.92) 100%
-    );
-  }
-  .cinematic-side {
-    background: linear-gradient(
-      90deg,
-      rgba(10, 22, 40, 0.85) 0%,
-      rgba(10, 22, 40, 0.45) 35%,
-      transparent 70%
-    );
-  }
-
-  /* V2 — gold ticker pulse */
-  @keyframes gold-pulse {
-    0%, 100% { opacity: 0.7; }
-    50% { opacity: 1; }
-  }
-  .animate-gold-pulse {
-    animation: gold-pulse 2.4s ease-in-out infinite;
-  }
-
-  /* Existing — kept for compatibility */
+  /* Marquee */
   @keyframes marquee {
     from { transform: translateX(0); }
     to   { transform: translateX(-50%); }
@@ -273,38 +212,11 @@
     animation: soft-pulse 1.8s ease-in-out infinite;
   }
 
-  @keyframes scroll-bob {
-    0%, 100% { transform: translateY(0); opacity: 0.65; }
-    50%      { transform: translateY(6px); opacity: 1; }
-  }
-  .animate-scroll-bob {
-    animation: scroll-bob 2.2s ease-in-out infinite;
-  }
-
-  .orange-blob {
-    background: radial-gradient(
-      closest-side,
-      rgba(255, 106, 44, 0.28),
-      rgba(255, 133, 80, 0.16) 45%,
-      transparent 72%
-    );
-    filter: blur(30px);
-  }
-
-  .gold-blob {
-    background: radial-gradient(
-      closest-side,
-      rgba(201, 169, 97, 0.32),
-      rgba(212, 184, 118, 0.18) 45%,
-      transparent 72%
-    );
-    filter: blur(40px);
-  }
-
+  /* Card lifts — softer for the bright theme */
   .card-soft {
     box-shadow:
-      0 1px 2px rgba(0, 0, 0, 0.18),
-      0 8px 24px -12px rgba(0, 0, 0, 0.36);
+      0 1px 2px rgba(42, 37, 32, 0.04),
+      0 8px 24px -16px rgba(42, 37, 32, 0.1);
   }
   .card-hover {
     transition:
@@ -315,50 +227,61 @@
   .card-hover:hover {
     transform: translateY(-4px);
     box-shadow:
-      0 2px 4px rgba(0, 0, 0, 0.22),
-      0 24px 48px -20px rgba(0, 0, 0, 0.45);
+      0 2px 4px rgba(42, 37, 32, 0.06),
+      0 24px 48px -24px rgba(42, 37, 32, 0.18);
   }
 
+  /* Eyebrow */
   .eyebrow {
-    font-family: var(--font-inter), system-ui, sans-serif;
+    font-family: var(--font-sans), system-ui, sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.18em;
     font-size: 0.7rem;
     font-weight: 600;
   }
 
-  .btn-gold {
-    background-color: var(--accent-gold);
-    color: var(--bg-deep);
+  /* Buttons — LPQ-inspired minimal */
+  .btn-earth {
+    background-color: var(--earth);
+    color: #FAF6EE;
     transition: background-color 0.2s ease, transform 0.2s ease;
   }
-  .btn-gold:hover {
-    background-color: var(--accent-gold-soft);
+  .btn-earth:hover {
+    background-color: var(--earth-deep);
   }
-  .btn-gold:active {
+  .btn-earth:active {
     transform: translateY(1px);
   }
-  .btn-gold-outline {
-    border: 1px solid var(--accent-gold);
-    color: var(--accent-gold);
+  .btn-earth-outline {
+    border: 1px solid var(--earth);
+    color: var(--earth);
     background-color: transparent;
     transition: all 0.2s ease;
   }
-  .btn-gold-outline:hover {
-    background-color: var(--accent-gold);
-    color: var(--bg-deep);
+  .btn-earth-outline:hover {
+    background-color: var(--earth);
+    color: #FAF6EE;
   }
-
-  .btn-orange {
-    background-color: var(--orange);
-    color: #FFFFFF;
+  .btn-ink {
+    background-color: var(--ink);
+    color: #FAF6EE;
     transition: background-color 0.2s ease, transform 0.2s ease;
   }
-  .btn-orange:hover {
-    background-color: var(--orange-bright);
+  .btn-ink:hover {
+    background-color: var(--ink-soft);
   }
-  .btn-orange:active {
+  .btn-ink:active {
     transform: translateY(1px);
+  }
+  .btn-text {
+    color: var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 2px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .btn-text:hover {
+    color: var(--earth);
+    border-color: var(--earth);
   }
 
   .scrollbar-none {
@@ -371,6 +294,6 @@
 }
 
 ::selection {
-  background-color: var(--accent-gold);
-  color: var(--bg-deep);
+  background-color: #7C5C3D;
+  color: #FAF6EE;
 }

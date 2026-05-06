@@ -1,9 +1,8 @@
 "use client";
 
 /**
- * LeadFormDark — V2 dark-theme partnership lead form.
- * Same fields and POST endpoint as the V1 LeadForm but restyled for the
- * navy + gold landing page.
+ * LeadForm — bright variant.
+ * Paper card on warm cream backdrop, earth accents, charcoal inputs.
  */
 
 import { motion, AnimatePresence } from "framer-motion";
@@ -62,7 +61,7 @@ export default function LeadFormDark({ id = "contact" }: { id?: string }) {
   return (
     <section
       id={id}
-      className="bg-[color:var(--bg-warm-shadow)] py-20 md:py-28"
+      className="bg-[color:var(--bg-warm)] py-20 md:py-28"
     >
       <div className="relative mx-auto max-w-[860px] px-5 md:px-8">
         <motion.div
@@ -72,17 +71,17 @@ export default function LeadFormDark({ id = "contact" }: { id?: string }) {
           transition={{ duration: 0.7, ease: EASE }}
           className="mb-10 text-center md:mb-12"
         >
-          <span className="text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-[color:var(--accent-gold)]">
+          <span className="text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-[color:var(--earth)]">
             Partnership desk
           </span>
-          <h2 className="mt-4 font-display text-3xl md:text-4xl lg:text-5xl font-light leading-tight tracking-tight text-[color:var(--text-primary)]">
+          <h2 className="mt-4 font-display text-3xl md:text-4xl lg:text-5xl font-medium leading-tight tracking-tight text-ink">
             Request your{" "}
-            <em className="italic text-[color:var(--accent-gold)]">
+            <em className="italic text-[color:var(--earth)]">
               Partnership Kit
             </em>
             .
           </h2>
-          <p className="mx-auto mt-4 max-w-md text-base font-light leading-relaxed text-[color:var(--text-primary)]/85">
+          <p className="mx-auto mt-4 max-w-md text-base leading-relaxed text-ink-soft">
             Our UAE desk responds within 1 working day.
           </p>
         </motion.div>
@@ -92,7 +91,7 @@ export default function LeadFormDark({ id = "contact" }: { id?: string }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.8, ease: EASE, delay: 0.1 }}
-          className="relative overflow-hidden rounded-[24px] border border-[color:var(--border-subtle)] bg-[color:var(--bg-deep)] p-6 shadow-[0_30px_70px_-30px_rgba(0,0,0,0.55)] md:p-10"
+          className="relative overflow-hidden rounded-[24px] border border-[color:var(--line)] bg-[color:var(--bg-paper)] p-6 shadow-[0_30px_70px_-30px_rgba(42,37,32,0.18)] md:p-10"
         >
           <AnimatePresence mode="wait">
             {status === "success" ? (
@@ -107,17 +106,17 @@ export default function LeadFormDark({ id = "contact" }: { id?: string }) {
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ duration: 0.6, ease: EASE, delay: 0.1 }}
-                  className="flex h-14 w-14 items-center justify-center rounded-full border border-[color:var(--border-gold)] bg-[color:var(--accent-gold)]/15"
+                  className="flex h-14 w-14 items-center justify-center rounded-full border border-[color:var(--earth)]/40 bg-[color:var(--earth)]/15"
                 >
                   <Check
-                    className="h-7 w-7 text-[color:var(--accent-gold)]"
+                    className="h-7 w-7 text-[color:var(--earth)]"
                     strokeWidth={2.5}
                   />
                 </motion.div>
-                <h3 className="font-display text-2xl md:text-3xl font-light tracking-tight text-[color:var(--text-primary)]">
+                <h3 className="font-display text-2xl md:text-3xl font-medium tracking-tight text-ink">
                   Thank you. Received.
                 </h3>
-                <p className="max-w-sm text-base font-light text-[color:var(--text-primary)]/80">
+                <p className="max-w-sm text-base leading-relaxed text-ink-soft">
                   Our UAE desk will be in touch within 1 working day. For urgent
                   inquiries, WhatsApp us directly.
                 </p>
@@ -125,7 +124,7 @@ export default function LeadFormDark({ id = "contact" }: { id?: string }) {
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-2 inline-flex items-center gap-2 text-[0.9rem] font-semibold text-[color:var(--accent-gold)] hover:underline"
+                  className="mt-2 inline-flex items-center gap-2 text-[0.9rem] font-semibold text-[color:var(--earth)] hover:underline"
                 >
                   <MessageCircle className="h-4 w-4" />
                   Continue on WhatsApp
@@ -139,49 +138,15 @@ export default function LeadFormDark({ id = "contact" }: { id?: string }) {
                 onSubmit={onSubmit}
                 className="grid grid-cols-1 gap-5 md:grid-cols-2"
               >
-                <Field
-                  label="Full Name"
-                  name="name"
-                  type="text"
-                  required
-                  placeholder="Your name"
-                />
-                <Field
-                  label="Company"
-                  name="company"
-                  type="text"
-                  required
-                  placeholder="Company / Brand"
-                />
-                <Field
-                  label="Business Email"
-                  name="email"
-                  type="email"
-                  required
-                  placeholder="you@company.com"
-                />
-                <Field
-                  label="WhatsApp / Phone"
-                  name="phone"
-                  type="tel"
-                  required
-                  placeholder="+971..."
-                />
-                <SelectField
-                  label="Country"
-                  name="country"
-                  required
-                  options={COUNTRIES}
-                />
-                <SelectField
-                  label="Business Type"
-                  name="business"
-                  required
-                  options={BUSINESS_TYPES}
-                />
+                <Field label="Full Name" name="name" type="text" required placeholder="Your name" />
+                <Field label="Company" name="company" type="text" required placeholder="Company / Brand" />
+                <Field label="Business Email" name="email" type="email" required placeholder="you@company.com" />
+                <Field label="WhatsApp / Phone" name="phone" type="tel" required placeholder="+971..." />
+                <SelectField label="Country" name="country" required options={COUNTRIES} />
+                <SelectField label="Business Type" name="business" required options={BUSINESS_TYPES} />
 
                 <div className="md:col-span-2">
-                  <label className="mb-3 block text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-[color:var(--accent-gold)]">
+                  <label className="mb-3 block text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-[color:var(--earth)]">
                     Interested in (select any)
                   </label>
                   <div className="flex flex-wrap gap-2">
@@ -200,13 +165,11 @@ export default function LeadFormDark({ id = "contact" }: { id?: string }) {
                           }}
                           className={`inline-flex items-center gap-1.5 rounded-full border px-3.5 py-2 text-[0.82rem] font-medium transition-all ${
                             active
-                              ? "border-[color:var(--accent-gold)] bg-[color:var(--accent-gold)] text-[color:var(--bg-deep)]"
-                              : "border-[color:var(--border-subtle)] bg-[color:var(--bg-warm-shadow)] text-[color:var(--text-primary)]/80 hover:border-[color:var(--accent-gold)] hover:text-[color:var(--text-primary)]"
+                              ? "border-[color:var(--earth)] bg-[color:var(--earth)] text-[color:var(--bg)]"
+                              : "border-[color:var(--line)] bg-[color:var(--bg)] text-ink-soft hover:border-[color:var(--earth)] hover:text-ink"
                           }`}
                         >
-                          {active && (
-                            <Check className="h-3.5 w-3.5" strokeWidth={3} />
-                          )}
+                          {active && <Check className="h-3.5 w-3.5" strokeWidth={3} />}
                           {chip}
                         </motion.button>
                       );
@@ -218,7 +181,7 @@ export default function LeadFormDark({ id = "contact" }: { id?: string }) {
                   <button
                     type="submit"
                     disabled={status === "loading"}
-                    className="btn-gold group inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-[0.95rem] font-semibold shadow-[0_14px_36px_-12px_rgba(201,169,97,0.5)] disabled:cursor-not-allowed disabled:opacity-70"
+                    className="btn-earth group inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-[0.95rem] font-semibold shadow-[0_14px_36px_-12px_rgba(124,92,61,0.45)] disabled:cursor-not-allowed disabled:opacity-70"
                   >
                     {status === "loading" ? (
                       <>
@@ -234,7 +197,7 @@ export default function LeadFormDark({ id = "contact" }: { id?: string }) {
                   </button>
 
                   {status === "error" && (
-                    <p className="mt-3 text-center text-[0.85rem] text-red-400">
+                    <p className="mt-3 text-center text-[0.85rem] text-red-700">
                       Something went wrong. Please try again or WhatsApp us.
                     </p>
                   )}
@@ -249,7 +212,7 @@ export default function LeadFormDark({ id = "contact" }: { id?: string }) {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-[0.92rem] font-medium text-[color:var(--text-secondary)] transition-colors hover:text-[color:var(--accent-gold)]"
+            className="inline-flex items-center gap-2 text-[0.92rem] font-medium text-ink-soft transition-colors hover:text-[color:var(--earth)]"
           >
             <MessageCircle className="h-4 w-4" />
             Prefer to chat? WhatsApp our UAE desk
@@ -278,10 +241,10 @@ function Field({
     <div className="flex flex-col gap-2">
       <label
         htmlFor={name}
-        className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-[color:var(--accent-gold)]"
+        className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-[color:var(--earth)]"
       >
         {label}
-        {required && <span className="text-[color:var(--accent-gold)]"> *</span>}
+        {required && <span className="text-[color:var(--earth)]"> *</span>}
       </label>
       <input
         id={name}
@@ -289,7 +252,7 @@ function Field({
         type={type}
         required={required}
         placeholder={placeholder}
-        className="h-12 rounded-xl border border-[color:var(--border-subtle)] bg-[color:var(--bg-warm-shadow)] px-4 text-[0.95rem] text-[color:var(--text-primary)] placeholder:text-[color:var(--text-secondary)] transition-colors focus:border-[color:var(--accent-gold)] focus:outline-none focus:ring-2 focus:ring-[color:var(--accent-gold)]/30"
+        className="h-12 rounded-xl border border-[color:var(--line)] bg-[color:var(--bg)] px-4 text-[0.95rem] text-ink placeholder:text-ink-muted transition-colors focus:border-[color:var(--earth)] focus:outline-none focus:ring-2 focus:ring-[color:var(--earth)]/30"
       />
     </div>
   );
@@ -310,23 +273,23 @@ function SelectField({
     <div className="flex flex-col gap-2">
       <label
         htmlFor={name}
-        className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-[color:var(--accent-gold)]"
+        className="text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-[color:var(--earth)]"
       >
         {label}
-        {required && <span className="text-[color:var(--accent-gold)]"> *</span>}
+        {required && <span className="text-[color:var(--earth)]"> *</span>}
       </label>
       <select
         id={name}
         name={name}
         required={required}
         defaultValue=""
-        className="h-12 appearance-none rounded-xl border border-[color:var(--border-subtle)] bg-[color:var(--bg-warm-shadow)] bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 20%22 fill=%22%23C9A961%22><path fill-rule=%22evenodd%22 d=%22M5.23 7.21a.75.75 0 011.06.02L10 11.06l3.71-3.83a.75.75 0 111.08 1.04l-4.25 4.39a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z%22 clip-rule=%22evenodd%22/></svg>')] bg-[length:1.1rem_1.1rem] bg-[right_1rem_center] bg-no-repeat px-4 pr-10 text-[0.95rem] text-[color:var(--text-primary)] transition-colors focus:border-[color:var(--accent-gold)] focus:outline-none focus:ring-2 focus:ring-[color:var(--accent-gold)]/30"
+        className="h-12 appearance-none rounded-xl border border-[color:var(--line)] bg-[color:var(--bg)] bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 20 20%22 fill=%22%237C5C3D%22><path fill-rule=%22evenodd%22 d=%22M5.23 7.21a.75.75 0 011.06.02L10 11.06l3.71-3.83a.75.75 0 111.08 1.04l-4.25 4.39a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z%22 clip-rule=%22evenodd%22/></svg>')] bg-[length:1.1rem_1.1rem] bg-[right_1rem_center] bg-no-repeat px-4 pr-10 text-[0.95rem] text-ink transition-colors focus:border-[color:var(--earth)] focus:outline-none focus:ring-2 focus:ring-[color:var(--earth)]/30"
       >
-        <option value="" disabled className="bg-[color:var(--bg-deep)]">
+        <option value="" disabled>
           Select...
         </option>
         {options.map((o) => (
-          <option key={o} value={o} className="bg-[color:var(--bg-deep)]">
+          <option key={o} value={o}>
             {o}
           </option>
         ))}

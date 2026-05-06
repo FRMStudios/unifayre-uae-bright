@@ -37,7 +37,7 @@ export default function VegetarianLandingPage() {
             <>
               {totalSkus} vegetarian SKUs.
               <br />
-              <em className="italic font-display text-[color:var(--accent-gold)]">
+              <em className="italic font-display text-[color:var(--earth)]">
                 Built for menus that scale.
               </em>
             </>
@@ -51,7 +51,7 @@ export default function VegetarianLandingPage() {
         />
 
         {/* CAPABILITY STRIP */}
-        <section className="border-y border-[color:var(--border-subtle)] bg-[color:var(--bg-warm-shadow)] py-12 md:py-14">
+        <section className="border-y border-[color:var(--line)] bg-[color:var(--bg-paper)] py-12 md:py-14">
           <div className="mx-auto grid max-w-[1320px] grid-cols-2 gap-6 px-5 md:grid-cols-4 md:gap-10 md:px-10">
             <CapabilityStat number="18,000" suffix=" MT" label="Veg Capacity" />
             <CapabilityStat number="4" suffix="" label="Categories" />
@@ -188,11 +188,11 @@ function CapabilityStat({
 }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <span className="whitespace-nowrap font-display text-2xl md:text-3xl lg:text-4xl font-light leading-none tracking-tight text-[color:var(--text-primary)]">
+      <span className="whitespace-nowrap font-display text-2xl md:text-3xl lg:text-4xl font-medium leading-none tracking-tight text-ink">
         {number}
-        <span className="text-[color:var(--accent-gold)]">{suffix}</span>
+        <span className="text-[color:var(--earth)]">{suffix}</span>
       </span>
-      <span className="text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-[color:var(--text-secondary)]">
+      <span className="text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-ink-muted">
         {label}
       </span>
     </div>

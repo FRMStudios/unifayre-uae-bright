@@ -1,12 +1,9 @@
 "use client";
 
 /**
- * WhyUnifayreDynamic — V2 dynamic Why Unifayre section.
- *
- * Replaces the previous static plant CinematicHero. Background image rotates
- * through 4 plant / operations shots with crossfade and Ken Burns. On the
- * left sits the headline; on the right, six animated capability pointer
- * cards stagger in with subtle hover lift.
+ * WhyUnifayreDynamic — bright variant.
+ * Cream backdrop with paper accents, rotating plant/operations imagery
+ * (clearly visible against cream), animated capability pointer cards.
  */
 
 import Image from "next/image";
@@ -60,36 +57,12 @@ type Pointer = {
 };
 
 const POINTERS: Pointer[] = [
-  {
-    icon: Factory,
-    metric: "18,000 MT",
-    label: "Annual veg capacity",
-  },
-  {
-    icon: Award,
-    metric: "BRC + FSSC",
-    label: "Certified lines",
-  },
-  {
-    icon: History,
-    metric: "30+ years",
-    label: "Manufacturing heritage",
-  },
-  {
-    icon: Store,
-    metric: "5,000+",
-    label: "Outlets served",
-  },
-  {
-    icon: FlaskConical,
-    metric: "R&D-led",
-    label: "Custom builds, your menu",
-  },
-  {
-    icon: ShieldCheck,
-    metric: "Halal-line",
-    label: "Ready, every SKU",
-  },
+  { icon: Factory, metric: "18,000 MT", label: "Annual veg capacity" },
+  { icon: Award, metric: "BRC + FSSC", label: "Certified lines" },
+  { icon: History, metric: "30+ years", label: "Manufacturing heritage" },
+  { icon: Store, metric: "5,000+", label: "Outlets served" },
+  { icon: FlaskConical, metric: "R&D-led", label: "Custom builds, your menu" },
+  { icon: ShieldCheck, metric: "Halal-line", label: "Ready, every SKU" },
 ];
 
 export default function WhyUnifayreDynamic({ id = "why" }: { id?: string }) {
@@ -107,16 +80,16 @@ export default function WhyUnifayreDynamic({ id = "why" }: { id?: string }) {
   return (
     <section
       id={id}
-      className="relative isolate overflow-hidden bg-[color:var(--bg-deep)] text-[color:var(--text-primary)]"
+      className="relative isolate overflow-hidden bg-[color:var(--bg)] text-ink"
     >
-      {/* Rotating background images with Ken Burns — much more visible now */}
+      {/* Rotating background images — visible against cream */}
       <div className="absolute inset-0">
         {SLIDES.map((s, i) => (
           <motion.div
             key={s.src}
             initial={false}
             animate={{
-              opacity: i === idx ? 0.92 : 0,
+              opacity: i === idx ? 0.55 : 0,
               scale: i === idx ? 1 : 1.06,
             }}
             transition={{
@@ -135,32 +108,28 @@ export default function WhyUnifayreDynamic({ id = "why" }: { id?: string }) {
           </motion.div>
         ))}
 
-        {/* Localised left-sweep gradient — keeps headline readable but lets
-            most of the image breathe through. */}
+        {/* Cream wash so left content reads */}
         <div
           aria-hidden
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(95deg, rgba(10,22,40,0.92) 0%, rgba(10,22,40,0.7) 22%, rgba(10,22,40,0.35) 42%, rgba(10,22,40,0.15) 58%, rgba(10,22,40,0.4) 100%)",
+              "linear-gradient(95deg, rgba(250,246,238,0.92) 0%, rgba(250,246,238,0.7) 22%, rgba(250,246,238,0.35) 42%, rgba(250,246,238,0.15) 58%, rgba(250,246,238,0.4) 100%)",
           }}
         />
-        {/* Soft bottom fade so section blends into next */}
         <div
           aria-hidden
-          className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[color:var(--bg-deep)] to-transparent"
+          className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[color:var(--bg)] to-transparent"
         />
       </div>
 
-      {/* Subtle gold blob accent */}
+      {/* Cream/earth blob accent */}
       <div
         aria-hidden
-        className="gold-blob pointer-events-none absolute -bottom-20 left-10 h-[420px] w-[420px] rounded-full opacity-50"
+        className="cream-blob pointer-events-none absolute -bottom-20 left-10 h-[420px] w-[420px] rounded-full opacity-50"
       />
 
-      {/* Content */}
       <div className="relative mx-auto grid min-h-[88svh] max-w-[1320px] items-center gap-12 px-5 py-24 md:grid-cols-[1fr_1.05fr] md:gap-14 md:px-10 md:py-28">
-        {/* Left — heading & sub */}
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -181,54 +150,39 @@ export default function WhyUnifayreDynamic({ id = "why" }: { id?: string }) {
               },
             }}
             style={{ transformOrigin: "0 50%" }}
-            className="gold-line w-24 md:w-32"
+            className="earth-line w-24 md:w-32"
           />
           <motion.span
             variants={{
               hidden: { opacity: 0, y: 12 },
-              show: {
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.7, ease: EASE },
-              },
+              show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
             }}
-            className="mt-6 text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-[color:var(--accent-gold)]"
+            className="mt-6 text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-[color:var(--earth)]"
           >
             Why Unifayre
           </motion.span>
           <motion.h2
             variants={{
               hidden: { opacity: 0, y: 24 },
-              show: {
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.95, ease: EASE },
-              },
+              show: { opacity: 1, y: 0, transition: { duration: 0.95, ease: EASE } },
             }}
-            className="mt-5 font-display text-3xl md:text-4xl lg:text-5xl font-light leading-tight tracking-tight text-[color:var(--text-primary)]"
+            className="mt-5 font-display text-3xl md:text-4xl lg:text-5xl font-medium leading-tight tracking-tight text-ink"
           >
             Built To Deliver,
             <br />
-            <em className="italic text-[color:var(--accent-gold)]">
-              Always.
-            </em>
+            <em className="italic text-[color:var(--earth)]">Always.</em>
           </motion.h2>
           <motion.p
             variants={{
               hidden: { opacity: 0, y: 14 },
-              show: {
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.8, ease: EASE },
-              },
+              show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } },
             }}
-            className="mt-5 max-w-[34rem] text-base md:text-lg font-light leading-relaxed text-[color:var(--text-primary)]/85"
+            className="mt-5 max-w-[34rem] text-base md:text-lg leading-relaxed text-ink-soft"
           >
             Over 30 years of precision manufacturing, BRC-certified lines, and
             an R&amp;D team that builds to your menu, region, and palate.
           </motion.p>
 
-          {/* Slide caption + dots — anchors the rotating imagery to context */}
           <motion.div
             variants={{
               hidden: { opacity: 0, y: 14 },
@@ -248,8 +202,8 @@ export default function WhyUnifayreDynamic({ id = "why" }: { id?: string }) {
                   aria-label={`Show slide ${i + 1}`}
                   className={`h-1.5 rounded-full transition-all ${
                     i === idx
-                      ? "w-6 bg-[color:var(--accent-gold)]"
-                      : "w-1.5 bg-[color:var(--text-secondary)]/40 hover:bg-[color:var(--text-secondary)]/70"
+                      ? "w-6 bg-[color:var(--earth)]"
+                      : "w-1.5 bg-ink-muted/40 hover:bg-ink-muted/70"
                   }`}
                 />
               ))}
@@ -261,7 +215,7 @@ export default function WhyUnifayreDynamic({ id = "why" }: { id?: string }) {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -6 }}
                 transition={{ duration: 0.4 }}
-                className="text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-[color:var(--accent-gold)]"
+                className="text-[0.66rem] font-semibold uppercase tracking-[0.18em] text-[color:var(--earth)]"
               >
                 {slide.caption}
               </motion.span>
@@ -281,21 +235,20 @@ export default function WhyUnifayreDynamic({ id = "why" }: { id?: string }) {
           >
             <a
               href="#contact"
-              className="group btn-gold inline-flex items-center gap-2 rounded-full px-6 py-3 text-[0.86rem] font-semibold shadow-[0_14px_36px_-12px_rgba(201,169,97,0.5)]"
+              className="group btn-earth inline-flex items-center gap-2 rounded-full px-6 py-3 text-[0.86rem] font-semibold shadow-[0_14px_36px_-12px_rgba(124,92,61,0.45)]"
             >
               Request Sample
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </a>
             <a
               href="#pillars"
-              className="btn-gold-outline inline-flex items-center gap-2 rounded-full px-6 py-3 text-[0.86rem] font-semibold backdrop-blur"
+              className="btn-earth-outline inline-flex items-center gap-2 rounded-full px-6 py-3 text-[0.86rem] font-semibold backdrop-blur"
             >
               See our pillars
             </a>
           </motion.div>
         </motion.div>
 
-        {/* Right — capability pointer cards */}
         <motion.div
           initial="hidden"
           whileInView="show"
@@ -318,16 +271,16 @@ export default function WhyUnifayreDynamic({ id = "why" }: { id?: string }) {
                 },
               }}
               whileHover={{ y: -3 }}
-              className="group flex flex-col gap-2 rounded-2xl border border-[color:var(--border-subtle)] bg-[color:var(--bg-warm-shadow)]/85 p-4 backdrop-blur-md transition-all hover:border-[color:var(--accent-gold)] md:p-5"
+              className="group flex flex-col gap-2 rounded-2xl border border-[color:var(--line)] bg-[color:var(--bg-paper)]/85 p-4 backdrop-blur-md transition-all hover:border-[color:var(--earth)] md:p-5"
             >
               <p.icon
-                className="h-5 w-5 text-[color:var(--accent-gold)] transition-transform duration-300 group-hover:scale-110"
+                className="h-5 w-5 text-[color:var(--earth)] transition-transform duration-300 group-hover:scale-110"
                 strokeWidth={1.6}
               />
-              <span className="font-display text-xl md:text-2xl font-light leading-none tracking-tight text-[color:var(--text-primary)]">
+              <span className="font-display text-xl md:text-2xl font-medium leading-none tracking-tight text-ink">
                 {p.metric}
               </span>
-              <span className="text-[0.72rem] font-medium leading-snug text-[color:var(--text-primary)]/75">
+              <span className="text-[0.72rem] font-medium leading-snug text-ink-soft">
                 {p.label}
               </span>
             </motion.div>

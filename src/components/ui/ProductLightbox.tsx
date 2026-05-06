@@ -55,7 +55,7 @@ export default function ProductLightbox({
           role="dialog"
           aria-modal="true"
           aria-label={product.name}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/75 p-4 backdrop-blur-md md:p-8"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-[color:var(--ink)]/55 p-4 backdrop-blur-md md:p-8"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.94, y: 20 }}
@@ -63,17 +63,17 @@ export default function ProductLightbox({
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ duration: 0.4, ease: EASE }}
             onClick={(e) => e.stopPropagation()}
-            className="relative grid max-h-[92vh] w-full max-w-[920px] overflow-hidden rounded-[24px] bg-white md:grid-cols-[1.1fr_0.9fr]"
+            className="relative grid max-h-[92vh] w-full max-w-[920px] overflow-hidden rounded-[24px] bg-[color:var(--bg-paper)] md:grid-cols-[1.1fr_0.9fr]"
           >
             <button
               onClick={onClose}
               aria-label="Close"
-              className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/95 text-ink shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-all hover:bg-[color:var(--orange)] hover:text-white"
+              className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-[color:var(--bg)] text-ink shadow-[0_4px_12px_rgba(42,37,32,0.18)] transition-all hover:bg-[color:var(--earth)] hover:text-[color:var(--bg)]"
             >
               <X className="h-5 w-5" strokeWidth={2} />
             </button>
 
-            <div className="relative aspect-square w-full overflow-hidden bg-[color:var(--bg-muted)] md:aspect-auto">
+            <div className="relative aspect-square w-full overflow-hidden bg-[color:var(--bg-warm)] md:aspect-auto">
               <Image
                 src={product.image}
                 alt={product.name}
@@ -83,7 +83,7 @@ export default function ProductLightbox({
               />
               {product.tag && (
                 <div className="absolute left-4 top-4">
-                  <span className="inline-flex items-center rounded-full bg-[color:var(--orange)] px-3 py-1 text-[0.66rem] font-bold uppercase tracking-[0.14em] text-white shadow-[0_6px_18px_-6px_rgba(255,106,44,0.5)]">
+                  <span className="inline-flex items-center rounded-full bg-[color:var(--earth)] px-3 py-1 text-[0.66rem] font-bold uppercase tracking-[0.14em] text-[color:var(--bg)] shadow-[0_6px_18px_-6px_rgba(124,92,61,0.5)]">
                     {product.tag}
                   </span>
                 </div>
@@ -94,8 +94,8 @@ export default function ProductLightbox({
               <span
                 className={`inline-flex w-fit items-center gap-1.5 rounded-full px-3 py-1 text-[0.62rem] font-bold uppercase tracking-[0.16em] ${
                   product.scope === "veg"
-                    ? "bg-emerald-500/10 text-emerald-700"
-                    : "bg-[color:var(--orange-soft)] text-[color:var(--orange)]"
+                    ? "bg-[color:var(--sage)]/15 text-[color:var(--sage)]"
+                    : "bg-[color:var(--earth)]/12 text-[color:var(--earth)]"
                 }`}
               >
                 {product.scope === "veg" ? (
@@ -106,7 +106,7 @@ export default function ProductLightbox({
                 {product.scope === "veg" ? "Vegetarian" : "Non-Vegetarian"}
               </span>
 
-              <h3 className="font-display text-[1.7rem] font-extrabold leading-tight tracking-[-0.025em] text-ink md:text-[2rem]">
+              <h3 className="font-display text-[1.7rem] font-medium leading-tight tracking-tight text-ink md:text-[2rem]">
                 {product.name}
               </h3>
 
@@ -125,7 +125,7 @@ export default function ProductLightbox({
               <a
                 href="#contact"
                 onClick={onClose}
-                className="group btn-orange mt-2 inline-flex w-fit items-center gap-2 rounded-full px-5 py-3 text-[0.88rem] font-semibold shadow-[0_10px_28px_-10px_rgba(255,106,44,0.6)]"
+                className="group btn-earth mt-2 inline-flex w-fit items-center gap-2 rounded-full px-5 py-3 text-[0.88rem] font-semibold shadow-[0_10px_28px_-10px_rgba(124,92,61,0.45)]"
               >
                 Request sample
                 <span className="transition-transform group-hover:translate-x-0.5">

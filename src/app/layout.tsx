@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { Inter, Cormorant_Garamond } from "next/font/google";
+import { DM_Sans, Lora } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const dmSans = DM_Sans({
+  variable: "--font-sans",
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500", "600", "700"],
 });
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const lora = Lora({
+  variable: "--font-serif",
   subsets: ["latin"],
   display: "swap",
   weight: ["400", "500", "600", "700"],
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Unifayre Foods | Frozen Food Partner for the UAE & Gulf",
     description:
-      "Restaurant-grade frozen food manufacturing. Over 30 years heritage. Now serving the UAE and Gulf.",
+      "Honest frozen food, manufactured at scale. Over 30 years heritage. Now serving the UAE and Gulf.",
     type: "website",
   },
 };
@@ -49,9 +49,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${cormorant.variable} h-full antialiased`}
+      className={`${dmSans.variable} ${lora.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-bg-deep text-text-primary font-sans">
+      <body className="min-h-full flex flex-col bg-bg text-ink font-sans">
         {children}
       </body>
     </html>
