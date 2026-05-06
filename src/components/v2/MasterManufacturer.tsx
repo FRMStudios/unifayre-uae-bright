@@ -28,17 +28,7 @@ const SLIDES: Slide[] = [
   {
     src: "/plant/plant-house.jpg",
     alt: "Plant interior with production line",
-    caption: "Production line",
-  },
-  {
-    src: "/images/veg/lifestyle/cloud-kitchen.png",
-    alt: "Operations — cloud kitchen pass",
-    caption: "Operations · Cloud kitchen pass",
-  },
-  {
-    src: "/images/veg/lifestyle/sizzle-closeup.png",
-    alt: "R&D test kitchen sizzle close-up",
-    caption: "R&D · Test kitchen",
+    caption: "Production line · Interior",
   },
 ];
 
